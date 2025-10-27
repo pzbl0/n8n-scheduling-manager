@@ -43,7 +43,7 @@
       "typeVersion": 1.1,
       "position": [
         -4464,
-        208
+        96
       ],
       "id": "cb1c961c-5392-41c9-b34f-1384ebbda2b6",
       "name": "When Executed by Another Workflow"
@@ -56,7 +56,7 @@
       "typeVersion": 1.3,
       "position": [
         -4688,
-        16
+        -96
       ],
       "id": "c2b6345c-90a3-4095-8ed9-fe1f8cfd694a",
       "name": "When chat message received",
@@ -87,8 +87,8 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        -112,
-        -384
+        48,
+        -376
       ],
       "id": "9caff2d7-2e00-4d1d-ba7a-32088125f77c",
       "name": "Update a row",
@@ -116,8 +116,8 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        -1152,
-        128
+        -624,
+        -136
       ],
       "id": "d6ea6ece-554d-4287-a547-adc5b42182d0",
       "name": "Delete a row",
@@ -142,7 +142,7 @@
       "typeVersion": 1.2,
       "position": [
         -2448,
-        416
+        304
       ],
       "id": "bb9ef8bc-09d6-4e6c-98f4-a07a24ac70c5",
       "name": "OpenAI Chat Model2",
@@ -167,7 +167,7 @@
       "typeVersion": 1.2,
       "position": [
         -2320,
-        416
+        304
       ],
       "id": "e0168b70-3ab2-4e98-870e-65b87ffbda1b",
       "name": "OpenAI Chat Model3",
@@ -250,7 +250,7 @@
       "typeVersion": 3.4,
       "position": [
         -4240,
-        112
+        0
       ],
       "id": "b7657e20-d972-4e83-a9ae-dcef6bedc832",
       "name": "data"
@@ -265,7 +265,7 @@
       "typeVersion": 1.3,
       "position": [
         -2192,
-        416
+        304
       ],
       "id": "44835c5f-64f4-4c9b-b333-789454ad95df",
       "name": "Structured Output Parser2"
@@ -284,7 +284,7 @@
       "typeVersion": 1.2,
       "position": [
         -2112,
-        624
+        512
       ],
       "id": "50e5e9f3-8d4a-442c-b5d4-08ecda761afa",
       "name": "OpenAI Chat Model9",
@@ -308,8 +308,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        -1392,
-        -368
+        -1376,
+        -544
       ],
       "id": "faff0ac0-ba0b-4e07-bd7f-d0cd9983f5b2",
       "name": "OpenAI Chat Model10",
@@ -333,8 +333,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        -1264,
-        -368
+        -1248,
+        -544
       ],
       "id": "6153f50c-01b2-4c65-b212-ef67a25225bf",
       "name": "OpenAI Chat Model11",
@@ -354,8 +354,8 @@
       "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
       "typeVersion": 1.3,
       "position": [
-        -1008,
-        -368
+        -992,
+        -544
       ],
       "id": "fe167577-ba53-4ec6-8933-b130edd17636",
       "name": "Structured Output Parser"
@@ -373,8 +373,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        -928,
-        -160
+        -912,
+        -336
       ],
       "id": "723c9330-7d1b-4858-98a2-e576c91476af",
       "name": "OpenAI Chat Model12",
@@ -522,7 +522,7 @@
       "typeVersion": 3.3,
       "position": [
         -3568,
-        -224
+        -416
       ],
       "id": "c0567e98-fc83-47d2-87cc-037e283cbdd4",
       "name": "Switch1"
@@ -540,8 +540,8 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 2.2,
       "position": [
-        -1296,
-        -592
+        -1280,
+        -768
       ],
       "id": "d66d89ce-fa99-456e-9804-b97fa5e8d2eb",
       "name": "set-date"
@@ -584,8 +584,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        -784,
-        -592
+        -624,
+        -560
       ],
       "id": "b9f1773b-a4df-4532-aea8-3dc51122f1f4",
       "name": "If fallback 2"
@@ -607,8 +607,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -560,
-        -448
+        -400,
+        -432
       ],
       "id": "47ed313d-de68-4001-a055-d09e9d324614",
       "name": "Fallback 2"
@@ -699,8 +699,8 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.3,
       "position": [
-        -560,
-        -688
+        -400,
+        -680
       ],
       "id": "8b161458-f4b0-4210-87ec-c5f8a29a81da",
       "name": "Switch2"
@@ -719,7 +719,7 @@
       "typeVersion": 2.2,
       "position": [
         -2416,
-        192
+        80
       ],
       "id": "80b42607-082f-4815-9d89-662570cacc0e",
       "name": "set-event"
@@ -766,7 +766,7 @@
       "typeVersion": 3.4,
       "position": [
         -4464,
-        16
+        -96
       ],
       "id": "3d594115-717a-4e35-8f1d-c40b8dbb217a",
       "name": "data1"
@@ -800,7 +800,7 @@
       "typeVersion": 2.2,
       "position": [
         -3792,
-        112
+        0
       ],
       "id": "803cdb46-be8f-4f4b-92e7-40bc880e90a0",
       "name": "If valid"
@@ -823,7 +823,7 @@
       "typeVersion": 3.4,
       "position": [
         -3568,
-        224
+        120
       ],
       "id": "ba18d903-cb6b-40b3-9614-c59bbd704b75",
       "name": "Fallback"
@@ -846,8 +846,8 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        -3248,
-        -80
+        -3344,
+        -464
       ],
       "id": "ba643a07-8e9c-4b66-8ea4-aa49c4812431",
       "name": "Get events",
@@ -921,7 +921,7 @@
       "typeVersion": 3.3,
       "position": [
         -3120,
-        144
+        40
       ],
       "id": "97655f3a-2e5f-49ad-bb1e-614dc56e6f76",
       "name": "Switch"
@@ -945,7 +945,7 @@
       "typeVersion": 1,
       "position": [
         -3344,
-        160
+        56
       ],
       "id": "4fa80a0b-981e-4508-8de0-670f897b60d4",
       "name": "Get events1",
@@ -974,7 +974,7 @@
       "typeVersion": 3.4,
       "position": [
         -2672,
-        192
+        80
       ],
       "id": "6905cad6-c5cb-492c-a145-00c42da3c018",
       "name": "Edit Fields4"
@@ -1039,8 +1039,8 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.3,
       "position": [
-        -1616,
-        -112
+        -1600,
+        -264
       ],
       "id": "ce17faad-db5f-43a9-8ee7-576a98193d85",
       "name": "Update or delete?"
@@ -1059,8 +1059,8 @@
       "type": "n8n-nodes-base.googleCalendar",
       "typeVersion": 1.3,
       "position": [
-        -1376,
-        128
+        -1112,
+        -136
       ],
       "id": "7dff0abc-2d16-4ebb-be78-fd878aed9ab1",
       "name": "Delete event",
@@ -1086,8 +1086,8 @@
       "type": "n8n-nodes-base.googleCalendarTool",
       "typeVersion": 1.3,
       "position": [
-        -1136,
-        -368
+        -1120,
+        -544
       ],
       "id": "65fe63a6-cd93-47f1-a5ba-dfa485495c13",
       "name": "get-availability",
@@ -1115,8 +1115,8 @@
       "type": "n8n-nodes-base.googleCalendar",
       "typeVersion": 1.3,
       "position": [
-        -336,
-        -576
+        -176,
+        -568
       ],
       "id": "6086459a-e3c5-4689-80ed-bb1be71bf24a",
       "name": "Create an event",
@@ -1144,8 +1144,8 @@
       "type": "n8n-nodes-base.googleCalendar",
       "typeVersion": 1.3,
       "position": [
-        -336,
-        -384
+        -176,
+        -376
       ],
       "id": "c4fb732e-0dcb-4c55-a742-b5f7518d0a71",
       "name": "Update an event",
@@ -1173,8 +1173,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        112,
-        -576
+        272,
+        -568
       ],
       "id": "df731192-c0e3-47f2-b1e5-33e4cac5b4fc",
       "name": "Output: event created"
@@ -1196,8 +1196,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        112,
-        -384
+        272,
+        -376
       ],
       "id": "349b7751-2c31-4194-a3cf-0b362a123ce9",
       "name": "Output: event changed"
@@ -1219,8 +1219,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -336,
-        -768
+        -176,
+        -760
       ],
       "id": "5ab058fa-583c-41dc-a9ad-be888d4464af",
       "name": "Output: availability true"
@@ -1242,8 +1242,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -928,
-        128
+        -400,
+        -136
       ],
       "id": "6e77715e-beed-4676-98dd-479978bd6a4e",
       "name": "Output: event deleted"
@@ -1279,8 +1279,8 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        -112,
-        -576
+        48,
+        -568
       ],
       "id": "5f897cae-de9b-441c-a61e-9fcfb46c418e",
       "name": "Create a row",
@@ -1309,7 +1309,7 @@
       "typeVersion": 3.4,
       "position": [
         -2896,
-        384
+        272
       ],
       "id": "3e8ecf32-ae78-4347-8337-22ea39d36acc",
       "name": "Output: No events"
@@ -1342,8 +1342,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        -1904,
-        192
+        -1824,
+        80
       ],
       "id": "f677cf48-2f16-449d-86da-edbd82113546",
       "name": "If fallback"
@@ -1365,8 +1365,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -1696,
-        288
+        -1600,
+        128
       ],
       "id": "10ae0704-d15e-4501-a728-c31e876358b6",
       "name": "Output: Fallback"
@@ -1379,7 +1379,7 @@
       "typeVersion": 2,
       "position": [
         -4016,
-        112
+        0
       ],
       "id": "a4a2194c-7059-4b31-bed8-066529de279e",
       "name": "validation"
@@ -1391,8 +1391,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -3024,
-        -80
+        -3120,
+        -464
       ],
       "id": "1da81f4f-995a-42ce-a38d-da9ea48389d2",
       "name": "output-events",
@@ -1406,7 +1406,7 @@
       "typeVersion": 2,
       "position": [
         -2896,
-        192
+        80
       ],
       "id": "ece06a34-bd03-4b4c-b9b1-e0b5102eef49",
       "name": "unify-events"

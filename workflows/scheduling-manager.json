@@ -62,7 +62,7 @@
       "type": "n8n-nodes-base.googleSheetsTool",
       "typeVersion": 4.7,
       "position": [
-        608,
+        480,
         224
       ],
       "id": "97ee48a1-e352-4ce8-a25d-a59dcddf09d4",
@@ -219,7 +219,7 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 2.2,
       "position": [
-        480,
+        608,
         224
       ],
       "id": "146dad0a-e851-4fa8-9557-2dbb204f752f",
@@ -234,7 +234,7 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 2.2,
       "position": [
-        352,
+        344,
         0
       ],
       "id": "e45e2836-f87d-4a5c-9761-0e02db923302",
