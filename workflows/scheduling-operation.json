@@ -79,7 +79,7 @@
           "fieldValues": [
             {
               "fieldId": "event_at",
-              "fieldValue": "={{ $('set-date').item.json.output.event_from }}"
+              "fieldValue": "={{ $('date-manager').item.json.output.event_from }}"
             }
           ]
         }
@@ -88,7 +88,7 @@
       "typeVersion": 1,
       "position": [
         48,
-        -376
+        -384
       ],
       "id": "9caff2d7-2e00-4d1d-ba7a-32088125f77c",
       "name": "Update a row",
@@ -117,7 +117,7 @@
       "typeVersion": 1,
       "position": [
         -624,
-        -136
+        -144
       ],
       "id": "d6ea6ece-554d-4287-a547-adc5b42182d0",
       "name": "Delete a row",
@@ -529,25 +529,6 @@
     },
     {
       "parameters": {
-        "promptType": "define",
-        "text": "={{ $('data').first().json.event_date }} - Evento de {{ $('data').first().json.event_duration }} minutos",
-        "hasOutputParser": true,
-        "needsFallback": true,
-        "options": {
-          "systemMessage": "=## CONTEXTO:\n\nTu tarea es analizar el mensaje del usuario y averiguar si el horario mencionado est\u00e1 disponible.\n\n---\n\nHoy es: {{ $now.setLocale('es').format('EEEE d \\'de\\' MMMM\\' del\\' yyyy \\'y son las\\' h:mma') }}\nLa duraci\u00f3n del evento es: {{ $('data').first().json.event_duration }} minutos.\nEl periodo de la ma\u00f1ana va desde las 12:00am a las 12:00pm.\nEl periodo de la tarde va desde las 12:00pm a las 18:00pm.\nEl periodo de la noche va desde las 18:00pm a las 12:00am.\nEl \u00fanico horario que puedes agendar es: {{ $('data').first().json.ranges_to_schedule }}\n\n---\n\n## INFORMACI\u00d3N PARA RETORNAR:\n\n- \"event_from\": Si el usuario menciona una hora espec\u00edfica debes usar esa hora, pero si es m\u00e1s gen\u00e9rico y dice un d\u00eda o una ma\u00f1ana, tarde o noche debes buscar en ese periodo. (usa formato ISO, ahora es {{ $now.toISO() }})\n\n- \"event_to\": Si el usuario menciona una hora espec\u00edfica debes usar esa hora + la duraci\u00f3n del evento para saber el valor de \"to\", pero si dice un d\u00eda o una ma\u00f1ana, tarde o noche debes considerar el horario en el que finaliza ese periodo. (usa formato ISO, ahora es {{ $now.toISO() }})\n\n- \"available\": `true` o `false` dependiendo de lo que te retorno la herramienta \"get-availability\".\n\n- \"fallback\": Completa este campo \u00fanicamente con las 3 siguientes opciones (no puede usarlo para ninguna otra cosa):\n  1. Si no fue especificado ning\u00fan dia u horario.\n  2. Si no hay disponibilidad en el horario mencionado.\n  3. Si fue especificado un rango (no una hora espec\u00edfica) y hay m\u00e1s de un horario disponible informa cuales son estos horarios.\n\n---\n\n## REGLAS:\n\n- Usa la herramienta `get_availability` para saber si hay disponibilidad en el horario requerrido.\n- Si el usuario inform\u00f3 una hora espec\u00edfica y hay disponibilidad no ofrezcas m\u00e1s opciones, usa ese hora.\n- Si el usuario busca en un rango (ejemplo: el dia x, o a la tarde o a la ma\u00f1ana) debes usar la herramienta `get_availability` todas las veces que sea necesario en bloques de {{ $('data').first().json.event_duration }} minutos y retornar todas las opciones disponibles en el campo \"fallback\"\n\n---\n\n## RESPUESTA:\n\nSiempre responde SOLO con un objeto JSON v\u00e1lido, sin texto adicional. El JSON debe tener esta estructura exacta:\n\n{\n\"event_from\": \"string\",\n\"event_to\": \"string\",\n\"available\": boolean,\n\"fallback\": \"string | null\"\n}\n\n---\n\n## EJEMPLOS:\n\nEjemplo de entrada: \"viernes a las 3PM - evento de 75 minutos\" (no hace falta dar opciones porque hay disponibilidad en el horario espec\u00edfico que mencion\u00f3 el usuario)\n\nEjemplo de salida JSON:\n{\n\"event_from\": \"2025-10-24T15:00:00.000-03:00\",\n\"event_to\": \"2025-10-24T16:15:00.000-03:00\",\n\"available\": true,\n\"fallback\": null\n}\n\nEjemplo de entrada: \"Hoy a la tarde - Evento de 60 minutos\"\n\nEjemplo de salida JSON:\n{\n\"event_from\": \"2025-10-24T13:00:00.000-03:00\",\n\"event_to\": \"2025-10-24T18:00:00.000-03:00\",\n\"available\": true,\n\"fallback\": \"Hay dos horarios disponibles para hoy viernes 24 a la tarde: hay a las 15hs y a las 16hs. Cu\u00e1l te queda mejor?\"\n}\n\nEjemplo de entrada: \"Pr\u00f3ximo lunes - Evento de 30 minutos\"\n\nEjemplo de salida JSON:\n{\n\"event_from\": \"2025-10-27T08:00:00.000-03:00\",\n\"event_to\": \"2025-10-27T21:00:00.000-03:00\",\n\"available\": true,\n\"fallback\": \"Hay varios horarios disponibles para el lunes 27: hay a las 09hs, a las 09:30hs y a las 10hs. Cu\u00e1l te queda mejor?\"\n}\n\nEjemplo de entrada: \"Hoy a la tarde - Evento de 60 minutos\"\n\nEjemplo de salida JSON:\n{\n\"event_from\": \"[horario de inicio del periodo de la tarde]\",\n\"event_to\": \"[horario de fin del periodo de la tarde]\",\n\"available\": false,\n\"fallback\": \"Para hoy a la tarde no hay horarios disponibles, podemos buscar para otro d\u00eda?\"\n}"
-        }
-      },
-      "type": "@n8n/n8n-nodes-langchain.agent",
-      "typeVersion": 2.2,
-      "position": [
-        -1280,
-        -768
-      ],
-      "id": "d66d89ce-fa99-456e-9804-b97fa5e8d2eb",
-      "name": "set-date"
-    },
-    {
-      "parameters": {
         "conditions": {
           "options": {
             "caseSensitive": true,
@@ -597,7 +578,7 @@
             {
               "id": "d4801fea-7ee9-4226-82a5-decf464f5e4c",
               "name": "output",
-              "value": "={{ $('set-date').item.json.output.fallback }}",
+              "value": "={{ $('date-manager').item.json.output.fallback }}",
               "type": "string"
             }
           ]
@@ -700,7 +681,7 @@
       "typeVersion": 3.3,
       "position": [
         -400,
-        -680
+        -688
       ],
       "id": "8b161458-f4b0-4210-87ec-c5f8a29a81da",
       "name": "Switch2"
@@ -823,7 +804,7 @@
       "typeVersion": 3.4,
       "position": [
         -3568,
-        120
+        128
       ],
       "id": "ba18d903-cb6b-40b3-9614-c59bbd704b75",
       "name": "Fallback"
@@ -921,7 +902,7 @@
       "typeVersion": 3.3,
       "position": [
         -3120,
-        40
+        48
       ],
       "id": "97655f3a-2e5f-49ad-bb1e-614dc56e6f76",
       "name": "Switch"
@@ -945,7 +926,7 @@
       "typeVersion": 1,
       "position": [
         -3344,
-        56
+        64
       ],
       "id": "4fa80a0b-981e-4508-8de0-670f897b60d4",
       "name": "Get events1",
@@ -1040,7 +1021,7 @@
       "typeVersion": 3.3,
       "position": [
         -1600,
-        -264
+        -272
       ],
       "id": "ce17faad-db5f-43a9-8ee7-576a98193d85",
       "name": "Update or delete?"
@@ -1059,8 +1040,8 @@
       "type": "n8n-nodes-base.googleCalendar",
       "typeVersion": 1.3,
       "position": [
-        -1112,
-        -136
+        -1120,
+        -144
       ],
       "id": "7dff0abc-2d16-4ebb-be78-fd878aed9ab1",
       "name": "Delete event",
@@ -1105,8 +1086,8 @@
           "value": "={{ $('data').item.json.calendar_id }}",
           "mode": "id"
         },
-        "start": "={{ $('set-date').item.json.output.event_from }}",
-        "end": "={{ $('set-date').item.json.output.event_to }}",
+        "start": "={{ $('date-manager').item.json.output.event_from }}",
+        "end": "={{ $('date-manager').item.json.output.event_to }}",
         "additionalFields": {
           "description": "={{ $('data').item.json.client_id }}",
           "summary": "={{ $('data').item.json.event_reason }} - {{ $('data').item.json.client_name }}"
@@ -1116,7 +1097,7 @@
       "typeVersion": 1.3,
       "position": [
         -176,
-        -568
+        -576
       ],
       "id": "6086459a-e3c5-4689-80ed-bb1be71bf24a",
       "name": "Create an event",
@@ -1137,15 +1118,15 @@
         },
         "eventId": "={{ $('set-event').item.json.output.event_code }}",
         "updateFields": {
-          "end": "={{ $('set-date').item.json.output.event_to }}",
-          "start": "={{ $('set-date').item.json.output.event_from }}"
+          "end": "={{ $('date-manager').item.json.output.event_to }}",
+          "start": "={{ $('date-manager').item.json.output.event_from }}"
         }
       },
       "type": "n8n-nodes-base.googleCalendar",
       "typeVersion": 1.3,
       "position": [
         -176,
-        -376
+        -384
       ],
       "id": "c4fb732e-0dcb-4c55-a742-b5f7518d0a71",
       "name": "Update an event",
@@ -1174,7 +1155,7 @@
       "typeVersion": 3.4,
       "position": [
         272,
-        -568
+        -576
       ],
       "id": "df731192-c0e3-47f2-b1e5-33e4cac5b4fc",
       "name": "Output: event created"
@@ -1197,7 +1178,7 @@
       "typeVersion": 3.4,
       "position": [
         272,
-        -376
+        -384
       ],
       "id": "349b7751-2c31-4194-a3cf-0b362a123ce9",
       "name": "Output: event changed"
@@ -1220,7 +1201,7 @@
       "typeVersion": 3.4,
       "position": [
         -176,
-        -760
+        -768
       ],
       "id": "5ab058fa-583c-41dc-a9ad-be888d4464af",
       "name": "Output: availability true"
@@ -1243,7 +1224,7 @@
       "typeVersion": 3.4,
       "position": [
         -400,
-        -136
+        -144
       ],
       "id": "6e77715e-beed-4676-98dd-479978bd6a4e",
       "name": "Output: event deleted"
@@ -1270,7 +1251,7 @@
               "fieldValue": "={{ $json.start.dateTime }}"
             },
             {
-              "fieldId": "Title",
+              "fieldId": "title",
               "fieldValue": "={{ $json.summary }}"
             }
           ]
@@ -1280,7 +1261,7 @@
       "typeVersion": 1,
       "position": [
         48,
-        -568
+        -576
       ],
       "id": "5f897cae-de9b-441c-a61e-9fcfb46c418e",
       "name": "Create a row",
@@ -1410,6 +1391,25 @@
       ],
       "id": "ece06a34-bd03-4b4c-b9b1-e0b5102eef49",
       "name": "unify-events"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $('data').first().json.event_date }} - Evento de {{ $('data').first().json.event_duration }} minutos",
+        "hasOutputParser": true,
+        "needsFallback": true,
+        "options": {
+          "systemMessage": "=## CONTEXTO:\n\nTu tarea es analizar el mensaje del usuario y averiguar si el horario mencionado est\u00e1 disponible o que horarios hay disponibles en el periodo mencionado (d\u00eda, ma\u00f1ana, tarde, noche).\n\nHoy es: {{ $now.setLocale('es').format('EEEE d \\'de\\' MMMM\\' del\\' yyyy \\'y son las\\' h:mma') }}\nLa duraci\u00f3n del evento es: {{ $('data').first().json.event_duration }} minutos.\n\nEl periodo considerado ma\u00f1ana va desde las 12:00am a las 12:00pm.\nEl periodo considerado tarde va desde las 12:00pm a las 18:00pm.\nEl periodo considerado noche va desde las 18:00pm a las 12:00am.\n\nEl periodo permitido en el que puedes agendar es: {{ $('data').first().json.ranges_to_schedule }}\n\n---\n\n## INFORMACI\u00d3N PARA RETORNAR:\n\n- \"event_from\": Completa este campo con la hora espec\u00edfica o la hora donde inicia el periodo buscado (usa formato ISO, ahora es {{ $now.toISO() }}).\n- \"event_to\": Completa este campo con la hora espec\u00edfica + la duraci\u00f3n del evento o la hora donde finaliza el periodo buscado (usa formato ISO, ahora es {{ $now.toISO() }}).\n- \"available\": `true` o `false` dependiendo de lo que te retorno la herramienta \"get-availability\".\n- \"fallback\": Completa este campo \u00fanicamente si se da alguno de los siguientes 4 escenarios (no puede usarlo para ninguna otra cosa):\n  1. Si no fue especificado ning\u00fan dia u horario debes informar que es requerido.\n  2. Si no hay disponibilidad en el horario/periodo mencionado debes informarlo.\n  3. Si fue especificado un periodo (no una hora espec\u00edfica) y hay m\u00e1s de un horario disponible, informa cuales son estos horarios.\n  4. Si fue solicitado un horario que est\u00e1 por fuera del periodo permitido debes informarlo.\n\n---\n\n## REGLAS:\n\n- Usa la herramienta `get_availability` para saber si hay disponibilidad en el horario requerido.\n- Si el usuario inform\u00f3 una hora espec\u00edfica y hay disponibilidad no ofrezcas m\u00e1s opciones, usa ese hora.\n- Si el usuario busca en un periodo (ejemplo: el dia x, o a la tarde o a la ma\u00f1ana) debes usar la herramienta `get_availability` todas las veces que sea necesario en bloques de {{ $('data').first().json.event_duration }} minutos y retornar todas las opciones disponibles en el campo \"fallback\".\n- No puedes agendar fuera del del periodo permitido: {{ $('data').first().json.ranges_to_schedule }}.\n\n---\n\n## RESPUESTA:\n\nSiempre responde SOLO con un objeto JSON v\u00e1lido, sin texto adicional. El JSON debe tener esta estructura exacta:\n\n{\n\"event_from\": \"string\",\n\"event_to\": \"string\",\n\"available\": boolean,\n\"fallback\": \"string | null\"\n}\n\n---\n\n## EJEMPLOS:\n\nEjemplo de entrada: \"viernes a las 3PM - evento de 75 minutos\" (no hace falta dar opciones porque hay disponibilidad en el horario espec\u00edfico que mencion\u00f3 el usuario)\n\nEjemplo de salida JSON:\n{\n\"event_from\": \"2025-10-24T15:00:00.000-03:00\",\n\"event_to\": \"2025-10-24T16:15:00.000-03:00\",\n\"available\": true,\n\"fallback\": null\n}\n\nEjemplo de entrada: \"Hoy a la tarde - Evento de 60 minutos\"\n\nEjemplo de salida JSON:\n{\n\"event_from\": \"2025-10-24T13:00:00.000-03:00\",\n\"event_to\": \"2025-10-24T18:00:00.000-03:00\",\n\"available\": true,\n\"fallback\": \"Hay dos horarios disponibles para hoy viernes 24 a la tarde: hay a las 15hs y a las 16hs. Cu\u00e1l te queda mejor?\"\n}\n\nEjemplo de entrada: \"Hoy a la tarde - Evento de 60 minutos\"\n\nEjemplo de salida JSON:\n{\n\"event_from\": \"[horario de inicio del periodo de la tarde]\",\n\"event_to\": \"[horario de fin del periodo de la tarde]\",\n\"available\": false,\n\"fallback\": \"Para hoy a la tarde no hay horarios disponibles, podemos buscar para otro d\u00eda?\"\n}\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        -1280,
+        -768
+      ],
+      "id": "d66d89ce-fa99-456e-9804-b97fa5e8d2eb",
+      "name": "date-manager"
     }
   ],
   "connections": {
@@ -1516,7 +1516,7 @@
       "ai_languageModel": [
         [
           {
-            "node": "set-date",
+            "node": "date-manager",
             "type": "ai_languageModel",
             "index": 0
           }
@@ -1527,7 +1527,7 @@
       "ai_languageModel": [
         [
           {
-            "node": "set-date",
+            "node": "date-manager",
             "type": "ai_languageModel",
             "index": 1
           }
@@ -1538,7 +1538,7 @@
       "ai_outputParser": [
         [
           {
-            "node": "set-date",
+            "node": "date-manager",
             "type": "ai_outputParser",
             "index": 0
           }
@@ -1560,14 +1560,14 @@
       "main": [
         [
           {
-            "node": "set-date",
+            "node": "date-manager",
             "type": "main",
             "index": 0
           }
         ],
         [
           {
-            "node": "set-date",
+            "node": "date-manager",
             "type": "main",
             "index": 0
           }
@@ -1589,17 +1589,6 @@
         [
           {
             "node": "Get events1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "set-date": {
-      "main": [
-        [
-          {
-            "node": "If fallback 2",
             "type": "main",
             "index": 0
           }
@@ -1751,7 +1740,7 @@
       "main": [
         [
           {
-            "node": "set-date",
+            "node": "date-manager",
             "type": "main",
             "index": 0
           }
@@ -1780,7 +1769,7 @@
       "ai_tool": [
         [
           {
-            "node": "set-date",
+            "node": "date-manager",
             "type": "ai_tool",
             "index": 0
           }
@@ -1854,6 +1843,17 @@
         [
           {
             "node": "Edit Fields4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "date-manager": {
+      "main": [
+        [
+          {
+            "node": "If fallback 2",
             "type": "main",
             "index": 0
           }
