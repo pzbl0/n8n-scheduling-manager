@@ -14,7 +14,8 @@ const unifiedEvents = items
       calendar_id: item.json.calendar_id,
       event_code: item.json.event_code,
       event_at: eventAt.toISOString(),
-      event_title: item.json.Title
+      event_title: item.json.title,
+      event_duration: item.json.event_duration
     };
   });
 

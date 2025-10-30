@@ -22,7 +22,7 @@ Tu tarea es analizar el mensaje del usuario y averiguar el código del evento al
 
 - Únicamente completa el campo "event_code" con el código real del evento que tienes bajo el título "LOS EVENTOS DEL USUARIO", nunca inventes un código.
 - Nunca eligas un evento al azar, siempre debes basarte en la información específica que dice el usuario.
-- Si el usuario dio información específica de cual de los eventos se refiere entonces debes usar el "event_code" de ese evento. El usuario puede dar información específica informando el motivo del evento o la hora del mismo.
+- Si el usuario dio información específica de cual de los eventos se refiere (el motivo del evento) entonces debes usar el "event_code" de ese evento.
 
 ---
 
